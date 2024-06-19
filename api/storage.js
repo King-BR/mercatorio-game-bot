@@ -92,7 +92,7 @@ function create_flow_table(flows) {
 
   return table(table_arr, {
     border: getBorderCharacters("ramac"),
-    header: { content: "Flows" },
+    header: { content: "Previous turn flows" },
   });
 }
 
@@ -118,7 +118,7 @@ async function print_inventory_table(assets) {
 
 async function print_flow_table(flows) {
   logToFile(create_flow_table(flows));
-  console.log("Flows");
+  console.log("Previous turn flows");
   console.table(flows);
 }
 
