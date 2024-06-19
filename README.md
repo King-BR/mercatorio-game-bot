@@ -1,2 +1,2 @@
 # mercatorio-game-bot
-Bot account for the game Mercatorio (https://mercatorio.io)
+Bot (automated player) account for the game Mercatorio (https://mercatorio.io)
