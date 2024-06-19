@@ -1,10 +1,11 @@
 const { table, getBorderCharacters } = require("table");
 const request = require("./API_request.js");
 const { logger, logToFile } = require("../utils.js");
+const config = require("../config.js");
 
-async function get_storage(config) {
+async function get_storage() {
   let res = await request(`buildings/${config.storage_ID}`);
-  return res.data;
+  return res.data.storage;
 }
 
 function create_inventory_table(assets) {
@@ -96,16 +97,16 @@ function create_flow_table(flows) {
   });
 }
 
-async function get_inventory_table(config) {
-  let storage = await get_storage(config);
-  let assets = storage.storage.inventory.account.assets;
+async function get_inventory_table() {
+  let storage = await get_storage();
+  let assets = storage.inventory.account.assets;
 
   return create_inventory_table(assets);
 }
 
-async function get_flow_table(config) {
-  let storage = await get_storage(config);
-  let flows = storage.storage.inventory.previous_flows;
+async function get_flow_table() {
+  let storage = await get_storage();
+  let flows = storage.inventory.previous_flows;
 
   return create_flow_table(flows);
 }
@@ -122,10 +123,10 @@ async function print_flow_table(flows) {
   console.table(flows);
 }
 
-async function print_tables(config) {
-  let storage = await get_storage(config);
-  let assets = storage.storage.inventory.account.assets;
-  let flows = storage.storage.inventory.previous_flows;
+async function print_tables() {
+  let storage = await get_storage();
+  let assets = storage.inventory.account.assets;
+  let flows = storage.inventory.previous_flows;
 
   print_inventory_table(assets);
   print_flow_table(flows);

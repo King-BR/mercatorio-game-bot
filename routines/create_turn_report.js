@@ -1,6 +1,5 @@
 const fs = require("fs");
 const { logger, getCurrentDateTimeFile, getCurrentDateTime } = require("../utils.js");
-const config = require("../config.json");
 const { get_storage, create_inventory_table, create_flow_table } = require("../api/storage.js");
 
 module.exports = async function () {
@@ -17,7 +16,7 @@ module.exports = async function () {
   logStream.write(`Turn report for ${getCurrentDateTime()}\n`);
   logStream.write(`\n`);
 
-  var storage = await get_storage(config);
+  var storage = await get_storage();
   var assets = storage.storage.inventory.account.assets;
   var flows = storage.storage.inventory.previous_flows;
 
