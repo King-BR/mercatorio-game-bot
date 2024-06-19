@@ -21,7 +21,7 @@ function getCurrentDateTimeFile() {
   const minutes = String(now.getMinutes()).padStart(2, "0");
   const seconds = String(now.getSeconds()).padStart(2, "0");
 
-  return `${day}-${month}-${year}_${hours}-${minutes}-${seconds}`;
+  return `${day}-${month}-${year}_hour-${hours}`;
 }
 
 function getFormattedDate() {
