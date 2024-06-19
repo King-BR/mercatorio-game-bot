@@ -10,5 +10,5 @@ module.exports = async function () {
 
 
   await create_turn_report();
-  logger.info(`Main routine ended.`);
+  logger.info(`Main routine ended. Waiting next turn...`);
 }
