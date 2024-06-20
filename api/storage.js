@@ -1,7 +1,7 @@
-const { table, getBorderCharacters } = require("table");
-const request = require("./API_request.js");
-const { logger, logToFile } = require("../utils.js");
-const config = require("../config.js");
+import { table, getBorderCharacters } from "table";
+import request from "./API_request.js";
+import utils from "../utils.js";
+import config from "../config.json" assert { type: "json" };
 
 async function get_storage() {
   let res = await request(`buildings/${config.storage_ID}`);
@@ -112,13 +112,13 @@ async function get_flow_table() {
 }
 
 async function print_inventory_table(assets) {
-  logToFile(create_inventory_table(assets));
+  utils.logToFile(create_inventory_table(assets));
   console.log("Inventory");
   console.table(assets);
 }
 
 async function print_flow_table(flows) {
-  logToFile(create_flow_table(flows));
+  utils.logToFile(create_flow_table(flows));
   console.log("Previous turn flows");
   console.table(flows);
 }
@@ -132,7 +132,7 @@ async function print_tables() {
   print_flow_table(flows);
 }
 
-module.exports = {
+export default {
   get_storage,
   create_inventory_table,
   create_flow_table,

@@ -1,13 +1,13 @@
-const { print_tables } = require("../api/storage");
-const { getCurrentDateTime, logger } = require("../utils.js");
-const create_turn_report = require("./create_turn_report.js");
+import API_storage from "../api/storage.js";
+import utils from "../utils.js";
+import create_turn_report from "./create_turn_report.js";
 
-module.exports = async function () {
-  logger.info(`${getCurrentDateTime()} | Executing main routine...`);
+export default async function () {
+  utils.logger.info(`${utils.getCurrentDateTime()} | Executing main routine...`);
 
-  await print_tables();
+  await API_storage.print_tables();
 
 
   await create_turn_report();
-  logger.info(`Main routine ended. Waiting next turn...`);
+  utils.logger.info(`Main routine ended. Waiting next turn...`);
 }

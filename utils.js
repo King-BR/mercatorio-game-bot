@@ -1,4 +1,4 @@
-const fs = require("fs");
+import { existsSync, mkdirSync, createWriteStream } from "fs";
 
 function getCurrentDateTime() {
   const now = new Date();
@@ -34,11 +34,11 @@ function getFormattedDate() {
 }
 
 function logToFile(message) {
-  if (!fs.existsSync("logs")) {
-    fs.mkdirSync("logs");
+  if (!existsSync("logs")) {
+    mkdirSync("logs");
   }
 
-  const logStream = fs.createWriteStream(`logs/log_${getFormattedDate()}.txt`, {
+  const logStream = createWriteStream(`logs/log_${getFormattedDate()}.txt`, {
     flags: "a",
   });
 
@@ -61,7 +61,7 @@ const logger = {
   },
 };
 
-module.exports = {
+export default {
   getCurrentDateTime,
   getCurrentDateTimeFile,
   getFormattedDate,

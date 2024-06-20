@@ -1,27 +1,27 @@
-const fs = require("fs");
-const { logger, getCurrentDateTimeFile, getCurrentDateTime } = require("../utils.js");
-const { get_storage, create_inventory_table, create_flow_table } = require("../api/storage.js");
+import { existsSync, mkdirSync, createWriteStream } from "fs";
+import utils from "../utils.js";
+import API_storage from "../api/storage.js";
 
-module.exports = async function () {
-  logger.info("Creating turn report...");
+export default async function () {
+  utils.logger.info("Creating turn report...");
 
-  if (!fs.existsSync("reports")) {
-    fs.mkdirSync("reports");
+  if (!existsSync("reports")) {
+    mkdirSync("reports");
   }
 
-  const logStream = fs.createWriteStream(`reports/turn_report_${getCurrentDateTimeFile()}.txt`, {
+  const logStream = createWriteStream(`reports/turn_report_${utils.getCurrentDateTimeFile()}.txt`, {
     flags: "a",
   });
 
-  logStream.write(`Turn report for ${getCurrentDateTime()}\n`);
+  logStream.write(`Turn report for ${utils.getCurrentDateTime()}\n`);
   logStream.write(`\n`);
 
-  var storage = await get_storage();
-  var assets = storage.storage.inventory.account.assets;
-  var flows = storage.storage.inventory.previous_flows;
+  var storage = await API_storage.get_storage();
+  var assets = storage.inventory.account.assets;
+  var flows = storage.inventory.previous_flows;
 
-  logStream.write(create_inventory_table(assets));
-  logStream.write(create_flow_table(flows));
+  logStream.write(API_storage.create_inventory_table(assets));
+  logStream.write(API_storage.create_flow_table(flows));
 
   logStream.end();
 }
