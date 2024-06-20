@@ -106,13 +106,13 @@ async function get_flow_table() {
 }
 
 async function print_inventory_table(assets) {
-  utils.logToFile(create_inventory_table(assets));
+  utils.logToFile("Inventory\n" + create_inventory_table(assets));
   console.log("Inventory");
   console.table(assets);
 }
 
 async function print_flow_table(flows) {
-  utils.logToFile(create_flow_table(flows));
+  utils.logToFile("Previous turn flows\n" + create_flow_table(flows));
   console.log("Previous turn flows");
   console.table(flows);
 }

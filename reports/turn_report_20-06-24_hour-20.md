@@ -1,5 +1,6 @@
-20/06/24 20:13:26 | Executing main routine...
-Inventory
+# Turn report for 20/06/24 20:13:27
+
+## Inventory
 | name     | balance   | reserved | capacity | purchase | purchase_price | sale   | sale_price | unit_cost |
 | -------- | --------- | -------- | -------- | -------- | -------------- | ------ | ---------- | --------- |
 | bricks   | 0         | 0        | 56       |          |                |        |            |           |
@@ -10,8 +11,8 @@ Inventory
 | lodging  | 0         | 0        |          |          |                | 8      | 10         | 1.25      |
 | money    | 21022.253 | 0        |          | 517.653  |                | 80.772 |            |           |
 | timber   | 15.428    | 0        | 300      |          |                | 10     | 23.988     | 2.509     |
-Creating turn report...
-Previous turn flows
+
+## Previous turn flows
 | name     | comsumption | production | production_cost | expiration | purchase | sale | transfer |
 | -------- | ----------- | ---------- | --------------- | ---------- | -------- | ---- | -------- |
 | bricks   |             |            |                 |            |          |      |          |
@@ -21,4 +22,3 @@ Previous turn flows
 | labour   | 78          |            |                 |            | 78       |      |          |
 | lodging  |             | 8          | 10              |            |          | 4    |          |
 | timber   |             | 25         | 62.713          |            |          | 10   | -15      |
-Main routine ended. Waiting next turn...
