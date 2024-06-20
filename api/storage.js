@@ -1,4 +1,4 @@
-import { table, getBorderCharacters } from "table";
+import { markdownTable as mdtable } from "markdown-table";
 import request from "./API_request.js";
 import utils from "../utils.js";
 import config from "../config.json" assert { type: "json" };
@@ -47,10 +47,7 @@ function create_inventory_table(assets) {
     table_arr.push(row_arr);
   }
 
-  return table(table_arr, {
-    border: getBorderCharacters("ramac"),
-    header: { content: "Inventory" },
-  });
+  return mdtable(table_arr);
 }
 
 function create_flow_table(flows) {
@@ -91,10 +88,7 @@ function create_flow_table(flows) {
     table_arr.push(row_arr);
   }
 
-  return table(table_arr, {
-    border: getBorderCharacters("ramac"),
-    header: { content: "Previous turn flows" },
-  });
+  return mdtable(table_arr);
 }
 
 async function get_inventory_table() {
