@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "mercatorio-game-bot"
+version = "0.1.0"
+description = ""
+authors = ["Fernando <fernandopach2017@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pymerc = {git = "https://github.com/jmgilman/pymerc"}
+python-dotenv = "^1.0.1"
+asyncclick = "^8.1.7.2"
+loguru = "^0.7.2"
+asyncio = "^3.4.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
