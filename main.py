@@ -34,9 +34,45 @@ async def main(
 
             inventory = player.storehouse.items
 
+            logger.info("Item | Purchase | Production | Imported | Sale | Consumed | Exported | Balance | Change")
+
             # Get the player's inventory
             for item in inventory:
-                logger.info("{}: {}", inventory[item].item.value, inventory[item].balance)
+                purchase = inventory[item].asset.purchase
+                if purchase is None:
+                    purchase = 0
+                
+                production = inventory[item].produced
+                if production is None:
+                    production = 0
+                
+                imported = inventory[item].imported
+                if imported is None:
+                    imported = 0
+                
+                sale = inventory[item].asset.sale
+                if sale is None:
+                    sale = 0
+                
+                comsumed = inventory[item].consumed
+                if comsumed is None:
+                    comsumed = 0
+                
+                exported = inventory[item].exported
+                if exported is None:
+                    exported = 0
+                
+                balance = inventory[item].balance
+                if balance is None:
+                    balance = 0
+
+                change = purchase + production + imported - sale - comsumed - exported
+                #logger.info("{}: {} - Changed by {}", item.value, inventory[item].balance, change)
+
+                # print a inventory table
+                logger.info("--------------------------------------------------------------------------------")
+                logger.info("{} | {} | {} | {} | {} | {} | {} | {} | {}".format(item.value, purchase, production, imported, sale, comsumed, exported, balance, change))
+                logger.info("--------------------------------------------------------------------------------")
             
             # await 1h
             await asyncio.sleep(3600)

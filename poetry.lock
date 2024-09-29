@@ -361,9 +361,9 @@ pydantic = "^2.7.1"
 
 [package.source]
 type = "git"
-url = "https://github.com/jmgilman/pymerc"
+url = "https://github.com/King-BR/pymerc"
 reference = "HEAD"
-resolved_reference = "d8f89cd3b493d6277ecd907ca061be93563dd7f9"
+resolved_reference = "20fdaeb3e6721e2dd48edc49c0e382922a74202a"
 
 [[package]]
 name = "python-dotenv"
@@ -418,4 +418,4 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "515e384de2782f539db3aff4e0c8f2d4176af4b591dc6dc03797abcbf4ee80fc"
+content-hash = "ac62d1d82bfc6cf39cd9c8cc5d0d8f6b181f0104be4278261abdeaa685e036b1"
