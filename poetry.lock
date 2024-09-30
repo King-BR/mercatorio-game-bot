@@ -363,7 +363,7 @@ pydantic = "^2.7.1"
 type = "git"
 url = "https://github.com/King-BR/pymerc"
 reference = "HEAD"
-resolved_reference = "20fdaeb3e6721e2dd48edc49c0e382922a74202a"
+resolved_reference = "c44f3973bb0f4f1754c9f4cfce93f0f6ec2ebdd5"
 
 [[package]]
 name = "python-dotenv"
