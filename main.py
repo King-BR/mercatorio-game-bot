@@ -3,7 +3,7 @@ import asyncclick as click
 from pymerc.client import Client
 from dotenv import load_dotenv
 from loguru import logger
-from pymerc.api.models.common import Item
+from routines.reports import ReportManager
 
 load_dotenv()
 
@@ -32,53 +32,16 @@ async def main(
             current_turn = await turn(client, True)
             logger.info("Current turn: {}", current_turn)
 
-            inventory = player.storehouse.items
+            report_manager = ReportManager(client, player, current_turn)
 
-            logger.info("Item | Purchase | Production | Imported | Sale | Consumed | Exported | Balance | Change")
-            logger.info("--------------------------------------------------------------------------------")
-
-            # Get the player's inventory
-            for item in inventory:
-                purchase = inventory[item].asset.purchase
-                if purchase is None:
-                    purchase = 0
-                
-                production = inventory[item].produced
-                if production is None:
-                    production = 0
-                
-                imported = inventory[item].imported
-                if imported is None:
-                    imported = 0
-                
-                sale = inventory[item].asset.sale
-                if sale is None:
-                    sale = 0
-                
-                comsumed = inventory[item].consumed
-                if comsumed is None:
-                    comsumed = 0
-                
-                exported = inventory[item].exported
-                if exported is None:
-                    exported = 0
-                
-                balance = inventory[item].balance
-                if balance is None:
-                    balance = 0
-
-                change = purchase + production + imported - sale - comsumed - exported
-
-                # print a inventory table
-                logger.info("{} | {} | {} | {} | {} | {} | {} | {} | {}".format(item.value, purchase, production, imported, sale, comsumed, exported, balance, change))
-                logger.info("--------------------------------------------------------------------------------")
+            await report_manager.make_reports()
             
             # await 1h
             await asyncio.sleep(3600)
 
         except TurnInProgressException:
                 logger.info("Turn still in progress.")
-                await asyncio.sleep(60)
+                await asyncio.sleep(120)
                 continue
 
 class TurnInProgressException(Exception):
