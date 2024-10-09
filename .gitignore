@@ -1,3 +1,7 @@
 .env
 storage.json
 town.json
+
+panel/node_modules
+
+*/__pycache__
