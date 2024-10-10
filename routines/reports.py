@@ -77,7 +77,7 @@ class ReportManager:
 
         # if website/raw_reports folder doesnt exist, create it
         try:
-            os.mkdir("website/raw_reports")
+            os.mkdir("raw_reports")
         except FileExistsError:
             pass
 
@@ -88,7 +88,7 @@ class ReportManager:
 
         # read from json file of the day, if it doesnt exist, create it
         try:
-            with open(f"website/raw_reports/{daystr}_town_report.json", "r") as f:
+            with open(f"raw_reports/{daystr}_town_report.json", "r") as f:
                 data = json.load(f)
         except FileNotFoundError:
             data = {}
@@ -132,5 +132,5 @@ class ReportManager:
 
             data[self.turn].append(town_data)
         
-        with open(f"website/raw_reports/{daystr}_town_report.json", "w") as f:
+        with open(f"raw_reports/{daystr}_town_report.json", "w") as f:
             json.dump(data, f, indent=2)

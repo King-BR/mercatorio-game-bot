@@ -2,6 +2,6 @@
 storage.json
 town.json
 
-website/node_modules
+raw_reports/
 
 */__pycache__
